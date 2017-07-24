@@ -52,7 +52,6 @@ def main(args):
                 for file in files:
                     full_filepath = local_directory+file
                     if os.path.isfile(full_filepath):
-                        print(full_filepath)
                         patterns.append(full_filepath)
                     else:
                         raise argparse.ArgumentTypeError('{} is not a file\n'.format(full_filepath))
