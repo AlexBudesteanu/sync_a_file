@@ -59,7 +59,7 @@ def main(args):
                 event_handler = FileWatcher(ssh, remote_dir, patterns=patterns)
             else:
                 # instantiate FileSystemEventHandler
-                event_handler = DirWatcher(ssh, local_directory, remote_dir)
+                event_handler = DirWatcher(ssh, local_directory, remote_location)
             observer = Observer()
             observer.schedule(event_handler, local_directory, recursive)
             observer.start()
