@@ -1,6 +1,5 @@
 import logging
 import os
-import shlex
 from scp import SCPClient
 from watchdog.events import FileSystemEventHandler, PatternMatchingEventHandler, FileModifiedEvent
 from subprocess import check_call, DEVNULL

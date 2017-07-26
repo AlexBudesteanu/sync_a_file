@@ -1,7 +1,5 @@
 from paramiko import SSHClient, AutoAddPolicy
 import argparse
-import os
-
 
 def get_ssh_client(host=None, user=None, password=None):
     """
@@ -25,31 +23,6 @@ def get_ssh_client(host=None, user=None, password=None):
     ssh.load_system_host_keys()
     ssh.connect(host, username=user, password=password)
     return ssh
-
-
-# def get_directory_and_file(local_filepath=None):
-#     """
-#         Method that parses a filepath and extracts a filename
-#         and its coresponding directory.
-#
-#         Args:
-#             local_filepath (string): a unix filepath.
-#             e.g: ~/Desktop/file.txt
-#
-#         Returns:
-#             tuple: A tuple with a unlix directory path and
-#                    the file to be synced with the remote system.
-#
-#         Raises:
-#             ArgumentTypeError: if the given path is invalid.
-#     """
-#     if '/' in local_filepath and os.path.isfile(local_filepath):
-#         file_dir, filename = local_filepath.split('/')
-#         # append a / character to file_dir to define a valid directory path
-#         file_dir += '/'
-#         return (file_dir, filename)
-#     else:
-#         raise argparse.ArgumentTypeError('Invalid argument {}\n'.format(local_filepath))
 
 
 def get_user_host_and_path(remote_location=None):
