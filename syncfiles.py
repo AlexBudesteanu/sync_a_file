@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
-
 import argparse
 import logging
 import getpass
 import time
 import os
+import sys
 from remote_file_sync.utils import get_user_host_and_path, get_ssh_client
 from remote_file_sync.handlers import FileWatcher, DirWatcher
 from watchdog.observers import Observer
-import sys
 
 
 def _init():
@@ -30,7 +28,7 @@ def _init():
     return parser
 
 
-def main(args):
+def main():
     try:
         local_directory = args.local_directory
         remote_location = args.remote_location
