@@ -1,9 +1,4 @@
-#!/usr/bin/python3
-
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 setup(name='sync_files',
       author='Alexandru Budesteanu',
@@ -18,6 +13,8 @@ setup(name='sync_files',
           'scp'
       ],
       entry_points={
-          'console_scripts': ['syncfiles=syncfiles:main'],
+          'console_scripts': [
+              'sync-files = syncfiles:main',
+          ],
       }
 )

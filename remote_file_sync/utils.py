@@ -1,5 +1,4 @@
 from paramiko import SSHClient, AutoAddPolicy
-import argparse
 
 def get_ssh_client(host=None, user=None, password=None):
     """
@@ -50,7 +49,4 @@ def get_user_host_and_path(remote_location=None):
     except ValueError:
         # catching a value error means that the split failed,
         # therefore the second arg is invalid
-        raise argparse.ArgumentTypeError('Invalid argument {}\n'.format(remote_location))
-
-def determine_common_dir(paths):
-    pass
+        raise ValueError('Invalid argument {}\n'.format(remote_location))

@@ -5,6 +5,8 @@ from watchdog.events import FileSystemEventHandler, PatternMatchingEventHandler,
 from subprocess import check_call, DEVNULL
 from functools import reduce
 
+logger = logging.getLogger("__main__")
+
 class DirWatcher(FileSystemEventHandler):
 
     def __init__(self, ssh, root_directory, remote_location):
@@ -30,9 +32,8 @@ class DirWatcher(FileSystemEventHandler):
         remote_root_folder = self._remote_location.split('/')[-1] if '/' in self._remote_location else None
         partial_path = reduce(lambda final_path, partial_path: final_path + '/' + partial_path, path.split('/')[1:])
         remote_path = remote_root_folder + '/' + partial_path if remote_root_folder else partial_path
-        logging.info(remote_path)
         self._sftp.put(path, remote_path)
-        logging.info("{} synced successfully".format(path))
+        logger.info("{} synced successfully".format(path))
 
     def on_modified(self, event):
         # 'and' clause added because of the way some editors handle file edits
@@ -56,7 +57,7 @@ class FileWatcher(PatternMatchingEventHandler):
     def _sync(self, file):
         with SCPClient(self._ssh_client.get_transport()) as scp:
             scp.put(file, self._destination)
-        logging.info("{} synced successfully".format(file))
+        logger.info("{} synced successfully".format(file))
 
     def on_modified(self, event):
         super(FileWatcher, self).on_modified(event)
